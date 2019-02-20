@@ -1,0 +1,17 @@
+rhn_username:
+rhn_password:
+pool:
+keyname:
+IDRSAPUB : "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDEzU7Cer0A9BPODCrDfZDYKGUPmVfuEP5TeI7jzXWSxjnTYyv3G69mIr7rt1z4PlmBYJ20K9yqu+DauLBa5E4WN8SzBbavaxLfzRiChhVAUUtrL0KoSEt8kYl15vLBUTSgaRXWGM2uCBODa2xa6MY5GBfDICBaOXXpBDNZ9MEuBclqB0vboOM1KF9DVqYcWaluICLfKNeCMGoChYIS+GUbvcMZNyD8ZUKf2AE77PHBlrazW+H5e+kLQGr6EOkrP1WGRucK0x/IlAFsBtkwdR8k7cdssf+dUH7cLwmuXI11Q2mymQKlXtrsyzbgDVI8KLuapsiD74yBEmTuSYtC9Ait latouche@metal-machine-music"
+os_auth_url: http://10.0.0.13:5000/v2.0
+os_project_name: admin
+os_username: admin
+os_password: password
+os_region: regionOne
+os_az: nova
+image: fedora28
+netname:
+provider-net: vlan-150
+cidr_provider_net: 172.16.40.0/24
+provider_phys: sriov
+segmentation: 1002

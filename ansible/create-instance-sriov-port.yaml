@@ -1,0 +1,15 @@
+- hosts: localhost
+  tasks:
+    - name: deploy
+      os_server:
+            state: present
+            name: "provider-sriovtest-centos7"
+            image: "centos7"
+            flavor: epa.small
+            key_name: "undercloud-key"
+            boot_from_volume: True
+            terminate_volume: True
+            config_drive: True
+            nics:
+              - port-name: "vf3"
+            userdata: "{% include 'userdata' %}"
