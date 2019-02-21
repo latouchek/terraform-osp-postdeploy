@@ -89,16 +89,7 @@ variable "disk" {
 #   }
 # }
 
-resource "openstack_images_image_v2" "CentOS7" {
-  name   = "centos7"
-  image_source_url = "https://cloud.centos.org/centos/7/images/CentOS-7-x86_64-GenericCloud.qcow2"
-  container_format = "bare"
-  disk_format = "qcow2"
 
-  properties = {
-    key = "value"
-  }
-}
 resource "openstack_compute_flavor_v2" "flavorsetm1" {
   name  = "${element(var.flavorname, count.index)}"
   ram   = "${element(var.ram, count.index)}"
@@ -125,67 +116,25 @@ resource "openstack_compute_flavor_v2" "flavorsetepa" {
   }
   count = "${length(var.flavorname2)}"
 }
-# resource "openstack_networking_port_v2" "vf2" {
-#   name = "vf2"
-#   network_id = "b4053371-c9cd-457b-844a-486b301eec4c"
-#   admin_state_up     = "true"
-#   security_group_ids = ["378a0ede-f956-42bf-b232-68d96a25c29e"]
-#   fixed_ip {
-#     "subnet_id"  = "05092f11-298c-4e69-9a60-3e581447397e"
-#     "ip_address" = "172.22.26.135"
+
+# resource "openstack_images_image_v2" "CentOS7" {
+#   name   = "centos7"
+#   image_source_url = "https://cloud.centos.org/centos/7/images/CentOS-7-x86_64-GenericCloud.qcow2"
+#   container_format = "bare"
+#   disk_format = "qcow2"
+#
+#   properties = {
+#     key = "value"
 #   }
 # }
-# resource "openstack_networking_port_v2" "port_1" {
-#   name       = "vf3"
-#   network_id = "5d46feeb-a9e6-4088-8e6b-28661366b661"
-# }
-resource "openstack_compute_instance_v2" "vm1" {
-  count = "1"
-  name = "test-instance"
-  image_name = "${var.image}"
-  # availability_zone = "${var.availability_zone}"
-  flavor_name = "${var.flavor}"
-  key_pair = "${var.ssh_key_pair}"
-  # key_pair = "${file("key.pub")}"
-  security_groups = ["${var.security_group}"]
-  network {
-    name = "telenor-net"
+
+resource "openstack_images_image_v2" "Fedora29" {
+  name   = "Fedora29"
+  image_source_url = "https://download.fedoraproject.org/pub/fedora/linux/releases/29/Cloud/x86_64/images/Fedora-Cloud-Base-29-1.2.x86_64.qcow2"
+  container_format = "bare"
+  disk_format = "qcow2"
+
+  properties = {
+    key = "value"
   }
-  user_data = "${file("user-data")}"
-}
-resource "openstack_compute_instance_v2" "vm2" {
-  count = "1"
-  name = "test-instance2"
-  image_name = "${var.image}"
-  # availability_zone = "${var.availability_zone}"
-  flavor_name = "m1.small"
-  key_pair = "${var.ssh_key_pair}"
-  # key_pair = "${file("key.pub")}"
-  security_groups = ["${var.security_group}"]
-  network {
-    name = "telenor-net"
-  }
-  user_data = "${file("user-data")}"
-}
-# resource "openstack_networking_network_v2" "public-net2" {
-#   name           = "public-net"
-#   admin_state_up = "true"
-#   external       = "true"
-#   transparent_vlan = "vlan"
-#
-# }
-# resource "openstack_networking_network_v2" "network_1" {
-#   name           = "tf_test_network"
-#   admin_state_up = "true"
-# }
-#
-# resource "openstack_networking_subnet_v2" "subnet_1" {
-#   network_id = "${openstack_networking_network_v2.network_1.id}"
-#   cidr       = "192.168.199.0/24"
-#   name       = "tf_test_subnet"
-# }
-resource "openstack_blockstorage_volume_v2" "volume_1" {
-  name        = "volume_1"
-  description = "first test volume"
-  size        = 35
 }

@@ -1,6 +1,6 @@
 #cloud-config
-hostname: provider-sriovtest
-fqdn: provider-sriovtest.lab.local
+hostname: {{ item.hostname }}
+fqdn: {{ item.hostname }}.lab.local
 manage_etc_hosts: true
 package_upgrade: true
 debug: True

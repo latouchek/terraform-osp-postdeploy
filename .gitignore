@@ -1,0 +1,12 @@
+.log
+/terraform/.terraform
+/terraform/*/.terraform
+/ansible/*retry
+/terraform/*/*tfstate
+/terraform/*/*tfstate.backup
+/.terraform
+/*/*retry
+/*/*tfstate
+/*/*tfstate.backup
+/terraform/*/*.pl
+/*/*/*.pl

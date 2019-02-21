@@ -1,0 +1,36 @@
+nodes:
+  - name: sriov1
+    hostname: sriov1
+    flavor: m2.large
+    ip: 10.200.1.27
+    network: provider_network1
+    subnet: provider-subnet1
+    image: Fedora29
+    az: AZ1
+
+  - name: sriov2
+    hostname: sriov22
+    flavor: m2.large
+    ip: 10.200.1.28
+    network: provider_network1
+    subnet: provider-subnet1
+    image: Fedora29
+    az: AZ1
+
+  - name: sriov3
+    hostname: sriov35
+    flavor: m2.large
+    ip: 10.200.1.29
+    network: provider_network1
+    subnet: provider-subnet1
+    image: fedora27
+    az: AZ1
+
+  - name: sriov4
+    hostname: sriov45
+    flavor: m2.large
+    ip: 10.200.1.30
+    network: provider_network1
+    subnet: provider-subnet1
+    image: fedora27
+    az: AZ1
