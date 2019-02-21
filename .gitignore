@@ -10,3 +10,4 @@
 /*/*tfstate.backup
 /terraform/*/*.pl
 /*/*/*.pl
+.gitignore
