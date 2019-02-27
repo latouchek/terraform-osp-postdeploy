@@ -8,6 +8,7 @@
           boot_from_volume: True
           terminate_volume: True
           config_drive: True
+          wait: True
           nics:
             - port-name: "vf-{{ item.ip }}"
           userdata: "{% include 'userdata' %}"

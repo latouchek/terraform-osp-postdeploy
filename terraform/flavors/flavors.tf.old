@@ -35,8 +35,18 @@ variable "disk" {
     }
 
 
-
-resource "openstack_compute_flavor_v2" "flavorepa" {
+resource "openstack_compute_flavor_v2" "flavorsetm1" {
+  name  = "${element(var.flavorname, count.index)}"
+  ram   = "${element(var.ram, count.index)}"
+  vcpus = "${element(var.vcpu, count.index)}"
+  disk  = "${element(var.disk, count.index)}"
+  is_public = "true"
+  extra_specs = {
+    "epa"   = "false"
+  }
+  count = "${length(var.flavorname)}"
+}
+resource "openstack_compute_flavor_v2" "flavorsetepa" {
   name  = "${element(var.flavorname2, count.index)}"
   ram   = "${element(var.ram, count.index)}"
   vcpus = "${element(var.vcpu, count.index)}"
@@ -51,3 +61,26 @@ resource "openstack_compute_flavor_v2" "flavorepa" {
   }
   count = "${length(var.flavorname2)}"
 }
+
+resource "openstack_images_image_v2" "GlanceImages" {
+  count = "${length(keys(var.images))}"
+  name   = "${element(keys(var.images), count.index)}"
+  image_source_url = "${element(values(var.images), count.index)}"
+  container_format = "bare"
+  disk_format = "qcow2"
+  # env = ["DATA=${element(values(var.images), count.index)}"]
+  properties = {
+    key = "value"
+  }
+}
+
+# resource "openstack_images_image_v2" "Fedora29" {
+#   name   = "Fedora29"
+#   image_source_url = "https://download.fedoraproject.org/pub/fedora/linux/releases/29/Cloud/x86_64/images/Fedora-Cloud-Base-29-1.2.x86_64.qcow2"
+#   container_format = "bare"
+#   disk_format = "qcow2"
+#
+#   properties = {
+#     key = "value"
+#   }
+# }

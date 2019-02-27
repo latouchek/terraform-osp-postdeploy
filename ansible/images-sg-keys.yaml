@@ -12,18 +12,18 @@
         - { state: 'present', name: 'm2.large' , ram: '2048' , vcpus: '8' , disk: '0' , ephemeral: '5' , flavorid: '4' }
         - { state: 'present', name: 'm2.master' , ram: '16384' , vcpus: '4' , disk: '45' , ephemeral: '0' , flavorid: '5' }
         - { state: 'present', name: 'm2.node' , ram: '32000' , vcpus: '4' , disk: '20' , ephemeral: '0' , flavorid: '6' }
-    - name: Create admin security group
+    - name: Create allowall security group
       os_security_group:
         state: present
-        name: admin
+        name: allowall
     - name: Allow any ICMP
       os_security_group_rule:
-        security_group: admin
+        security_group: allowall
         protocol: icmp
         remote_ip_prefix: 0.0.0.0/0
     - name: Allow any SSH connection
       os_security_group_rule:
-        security_group: admin
+        security_group: allowall
         protocol: tcp
         port_range_min: 22
         port_range_max: 22

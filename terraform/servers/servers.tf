@@ -1,30 +1,22 @@
-#
-# provider "openstack" {
-#   user_name = "${var.openstack_user_name}"
-#   tenant_name = "${var.openstack_tenant_name}"
-#   password  = "${var.openstack_password}"
-#   auth_url  = "${var.openstack_auth_url}"
-#   domain_name = "Default"
-# }
 
-variable "count" {
-  default = 3
-}
+# variable "count" {
+#   default = 3
+# }
 resource "openstack_compute_instance_v2" "TestVM" {
-  count = "${var.count}"
-  name = "${format("karimvm-%02d", count.index+1)}"
-  image_name = "${var.image}"
-  flavor_name = "${var.flavor}"
+  name = "${element(var.name, count.index)}"
+  image_name = "${element(var.image, count.index)}"
+  flavor_name = "${element(var.flavor, count.index)}"
   key_pair = "${var.ssh_key_pair}"
   security_groups = ["${var.security_group}"]
   network {
     name = "${var.network}"
+    fixed_ip_v4 = "${element(var.ip, count.index)}"
   }
   #user_data = "${file("user-data")}"
   user_data      = <<-EOF
                    #cloud-config
-                   hostname: ${format("vm-%02d", count.index+1)}
-                   fqdn: ${format("vm-%02d", count.index+1)}.lab.local
+                   hostname: ${element(var.name, count.index)}
+                   fqdn: ${element(var.name, count.index)}.lab.local
                    manage_etc_hosts: true
                    debug: true
                    output: { all: "| tee -a /var/log/cloud-init-output.log" }

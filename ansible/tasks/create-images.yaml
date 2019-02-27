@@ -1,0 +1,11 @@
+
+- hosts: localhost
+  gather_facts: no
+  tasks:
+      - name: Download and create  images
+        include: ./tasks/upload-images.yaml
+        with_items:
+          - { url: 'https://download.fedoraproject.org/pub/fedora/linux/releases/27/CloudImages/x86_64/images/Fedora-Cloud-Base-27-1.6.x86_64.qcow2', dest: './files/fedora27-server' , imagename: 'fedora27-server'}
+          - { url: 'https://cloud.centos.org/centos/7/images/CentOS-7-x86_64-GenericCloud.qcow2', dest: './files/centos7-server', imagename: 'centos7-server'}
+          - { url: 'https://cloud-images.ubuntu.com/xenial/current/xenial-server-cloudimg-amd64-disk1.img', dest: './files/xenial-server', imagename: 'xenial-server'}
+          - { url: 'http://download.cirros-cloud.net/0.3.5/cirros-0.3.5-x86_64-disk.img', dest: './files/cirros-server', imagename: 'cirros-server'}
