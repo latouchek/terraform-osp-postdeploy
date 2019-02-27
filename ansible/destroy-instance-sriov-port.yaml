@@ -1,6 +1,0 @@
-- hosts: localhost
-  tasks:
-    - name: deploy
-      os_server:
-            state: absent
-            name: "provider-sriovtest-centos7"
